@@ -1,7 +1,7 @@
 ---
 title: Lugsail
 type: project
-description: A lightweight data visualization tool designed to make good charts easier to create.
+description: I just wanted a chart. And clean data.
 date: 2026-06-12
 status: In development
 role: Product, editorial direction, and data visualization
@@ -10,13 +10,45 @@ topics: [data-visualization, tools]
 related: [ears-on-the-ground]
 links:
   - label: Project home
-    url: https://andjam.es/
+    url: https://lugsail.app/
 ---
 
 ## Context
 
-Lugsail is a lightweight data visualization tool designed to make good charts easier to create. This page is intentionally a project-shaped starting point, not a rigid case-study template.
+<small>(In the last few weeks, traffic to lugsail.app jumped up, so I thought I should write a quick post on why I’ve been putting it together. This is that.)</small>
 
-## Approach
+A couple of months ago, I was working on a <a href="https://wewillcure.com/insights/innovation-index/what-makes-an-institution-innovative" target="_blank">biomedical research white paper</a> and ran into a problem that’s been around for decades: most online charting tools are either too complex and ugly, or too simple to be useful.
 
-The publishing layer exposes project metadata when it is useful, while leaving the body free to include images, embedded prototypes, or a custom project layout later.
+I didn’t expect to get stuck on this. I spent years as a multimedia editor and <a href="https://www.wsj.com/graphics/how-the-coronavirus-spread/">data reporter at The Wall Street Journal</a>, building charts in D3 almost daily for breaking news, investigations, and interactive stories worldwide. After that I worked at a satellite company collecting <a href="https://spire.com/blog/aviation/unclouding-aviation-security-the-growing-threat-of-gps-spoofing/">Earth observation data</a>, where I saw the same thing from the other side: there’s an enormous distance between having a dataset and communicating it well. But once data is properly plotted, everyone gets it.
+
+So when I went looking for a basic charting tool – something to handle a few custom, branded designs – I expected options. Instead, the ones I found started at hundreds of dollars a month. One quote neared $1,000/month and still didn’t have the basic features I wanted. That is absurd, especially considering how many of these tools are built on top of the same open-source foundations data journalists and developers have used for well over a decade.
+
+## The gap
+Two things are true at once, and neither one serves the person who just needs a clear chart.
+
+First, existing tools are expensive and overbuilt. Paying enterprise SaaS prices to plot a bubble chart, a Sankey diagram, or a custom export-ready visual is ridiculous.
+
+Second, coding agents aren’t the answer either. Yes, an agent can generate a chart almost instantly. But it can also quietly reinterpret your dataset and make decisions about what doesn’t need to be shown – this is a real risk if you’re coming to the dataset fresh. And the moment you want to customize anything, you open the JS file and are met with a wall of spaghetti code. It’s hard to edit, hard to restyle, hard to fit to a brand guide, and hard to maintain. Even just changing a line width, adjusting an animation, or swapping in a custom shape could ruin your day.
+
+This matters more than it every has. Data isn’t slowing down. More of our work, news, research, marketing, public policy, and daily decision-making is shaped by datasets that arrives so fast that we don’t have a second to step back and interpret it. If we can’t take a beat to turn that data into something we actually understand, it might as well stay hidden… or worse, get used to exploit what we believe.
+
+A clear visualization shouldn’t require an enterprise contract, a specialist team, or a weekend of code. So I started building Lugsail.
+
+## What Lugsail is
+Lugsail is a browser-based data visualization tool for quickly turning data into clean, export-ready charts. Import or paste your data, clean it up, drag variables onto chart fields, adjust the styling, and export results.
+
+Your data never touches a server. It stays in your browser.
+
+This matters if you’re a data journalist working with sensitive material, a scientist exploring unpublished research, a marketer using proprietary campaign data, or anyone who just wants to see how their numbers look as a Sankey, Sunburst, Point Map, or basic line chart without uploading data somewhere that might sell it elsewhere.
+
+Lugsail is still an MVP. It isn’t trying to replace every enterprise dashboard, BI platform, or custom D3 project. It has a few simple goals:
+
+1. Be a data tool that’s fast, affordable, accessible, and private – a way to explore your data visually so it actually makes sense to you.
+
+2. Never force bloated software or disposable agent-generated code on you.
+
+3. Handle the tedious parts of data viz with thoughtful agentic workflows that don’t touch your data – on-brand color schemes, style guides, finicky axis alignments.
+
+4. Give you access to the data you need today.
+
+Go check it out: lugsail.app

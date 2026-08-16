@@ -22,6 +22,7 @@ const entries = defineCollection({
     links: z.array(link).default([]),
     related: z.array(z.string()).default([]),
     role: z.string().optional(),
+    layout: z.enum(['standard', 'custom']).default('standard'),
   }),
 });
 

@@ -9,10 +9,37 @@ related: [lugsail, ndvi-listener]
 
 import NDVIExplorer from '../../components/NDVIExplorer';
 
-Vegetation is often represented as a color scale. Sound offers another way to notice gradual change: a reading can move from an ambient texture toward a signal demanding attention.
+I’m in Canada so I opened Google Earth Engine to look at the NDVI/NDMI dataset over time in the surrounding fields where I’m staying. Screenshots below. This was tuned to Brazil for a hackathon, but I’ve since adjusted it to Southern Ontario.
+<img src="https://substackcdn.com/image/fetch/$s_!Jpwf!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcb7027b9-0290-4d87-8316-49146465be86_1870x1084.png" />
+<small>Normalized Difference Vegetation Index (NDVI) with a high-pass filter in <a href="https://earthengine.google.com/" target="_blank">Google Earth Engine</a>.</small>
+I’ve also been updating (or playing with) my <a href="https://andjam.es/instrument" target="_blank">Synesthesia Machine</a>. Video below of the work in progress. The vegetation stress levels/soil moisture data and audio project got me thinking last night about how data layers over our surrounding environments. That information is alerted to our senses. Also, how visual data is only visual because we present it visually.
 
-This small component is deliberately hydrated only when it becomes visible. The surrounding writing is ordinary static HTML.
+<video controlslist="nodownload" preload="metadata" data-video-id="173db5d0-3d08-4f9d-b8fe-7a75544431cf" poster="https://substack-video.s3.amazonaws.com/video_upload/post/209488643/173db5d0-3d08-4f9d-b8fe-7a75544431cf/transcoded-00001.png?refresh=Sun Aug 16 2026 13:10:45 GMT-0700 (Pacific Daylight Time)" crossorigin="anonymous" class="video-P2qgwZ" src="blob:https://lugsail.substack.com/8298bd18-d46f-4495-bda5-780cf6c66b97"></video>
 
-<NDVIExplorer client:visible />
+Over the last two years, having Multiple Sclerosis made me very aware of how one stressor emerges within unexpected signals. It was disconcerting at first then I learned them quickly. The signals are encrypted in my nervous system –
 
-The interface is only a sketch, but it demonstrates the useful boundary: the essay can remain an MDX document while a focused interactive lives in a component.
+Hot and humid weather makes my jaw tingle.
+
+Eating salty food or a bad sleep makes my feet feel like I’m walking on sand – gritty.
+
+A tedious conversation makes my spine tingle.
+
+So back to last night. I've spent two years learning to read my own body this way; a farmer already reads their field by feel, so why not give them one more sense to do it with?
+
+I got thinking how one piece of information isn’t always useful in the single way we present it – often that’s only visual. That’s not always the most useful way to get it. Driving directions on a map mean you take your eyes off the road to gain directional information. So we add audio cues. Audio is a natural directional medium – maybe more than visual cues.
+
+When I walk through a forest, I naturally listen to my surrounding. I hear birds in the trees above, water flowing, a nearby road. All are directional sounds layered on each other, but still clear. I can look for a chirping squirrel in a tree because I can hear the direction it comes from.
+
+<video controlslist="nodownload" preload="metadata" data-video-id="78eeb7d7-62fa-46d9-846c-d0f0d2c3bb9c" poster="https://substack-video.s3.amazonaws.com/video_upload/post/209488643/78eeb7d7-62fa-46d9-846c-d0f0d2c3bb9c/transcoded-00001.png?refresh=Sun Aug 16 2026 13:10:45 GMT-0700 (Pacific Daylight Time)" crossorigin="anonymous" class="video-P2qgwZ" src="blob:https://lugsail.substack.com/8fd477f7-4048-478c-9375-397fa829771a"></video>
+
+So for a farmer’s field, what if the visual data was translated the same way. The synesthesia machine with our GEE data – like the above low-res satellite data/synesthesia video – and add geolocation.
+
+A farmer already reads their field. Why can’t a farmer driving a tractor “hear” their crop’s health and soil moisture below using Spatial Audio? A human-in-the-loop includes a farmer’s intuition with layered audio data and variable-rate applications to know what’s happening in the crop and below the soil. Instead of application spreads depending only on mapped data from a screen, they’d target based on what’s happening inside their crop, below the ground, and what they already know – with that data from space.
+
+Just a thought that visual data may be more useful and interpretable through other means.
+
+I keep returning to the idea of the forest. That boundary that excludes sense is a design choice. Imagine walking through a forest and hearing its health, how vegetation stress has changed around you over the years. We already hear the birds and water flow. The data is already there and we have all the means to listen to it. I want to walk through a forest and hear its health and the ground below, too.
+
+Full GEE circle of data nearby below.
+
+<img src="https://substackcdn.com/image/fetch/$s_!p678!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4dcf2ca4-dd64-473c-bcb8-30df585725e1_1416x1316.png" />
