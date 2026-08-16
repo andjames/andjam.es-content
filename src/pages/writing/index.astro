@@ -1,0 +1,5 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import EntryList from '../../components/EntryList.astro'; import { publishedEntries } from '../../lib/content';
+const entries = (await publishedEntries()).filter(entry => entry.data.type === 'writing');
+---
+<BaseLayout title="Writing" description="Reporting, essays, technical notes, and field observations by Andrew James."><section class="index"><p class="eyebrow">Field journal</p><h1>Writing</h1><p class="intro">Reporting, research notes, and project writing—arranged as a working notebook rather than a conventional blog.</p><EntryList {entries} /></section></BaseLayout>

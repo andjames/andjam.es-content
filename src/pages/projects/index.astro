@@ -1,0 +1,5 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import EntryList from '../../components/EntryList.astro'; import { publishedEntries } from '../../lib/content';
+const entries = (await publishedEntries()).filter(entry => entry.data.type === 'project');
+---
+<BaseLayout title="Projects" description="Projects and case studies by Andrew James."><section class="index"><p class="eyebrow">Selected work</p><h1>Projects</h1><p class="intro">Things built, researched, and shaped—with room for their own context and form.</p><EntryList {entries} /></section></BaseLayout>

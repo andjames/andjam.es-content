@@ -1,0 +1,5 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import EntryList from '../../components/EntryList.astro'; import { publishedEntries } from '../../lib/content';
+const entries = (await publishedEntries()).filter(entry => entry.data.type === 'experiment');
+---
+<BaseLayout title="Experiments" description="Interactive and exploratory work by Andrew James."><section class="index"><p class="eyebrow">Work in public</p><h1>Experiments</h1><p class="intro">Maps, puzzles, audio, visualizations, browser toys, and other useful oddities.</p><EntryList {entries} /></section></BaseLayout>

@@ -1,0 +1,13 @@
+---
+import { formatDate, routeFor, type Entry } from '../lib/content';
+import { typeLabels } from '../lib/site';
+interface Props { entries: Entry[]; showType?: boolean; }
+const { entries, showType = false } = Astro.props;
+---
+<ol class="entry-list">
+  {entries.map((entry) => <li>
+    <p class="eyebrow">{showType && `${typeLabels[entry.data.type]} · `}{entry.data.topics[0] ?? typeLabels[entry.data.type]}{entry.data.date && ` · ${formatDate(entry.data.date)}`}</p>
+    <h2><a href={routeFor(entry)}>{entry.data.title}</a></h2>
+    <p>{entry.data.description}</p>
+  </li>)}
+</ol>

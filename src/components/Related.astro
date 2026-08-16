@@ -1,0 +1,6 @@
+---
+import { routeFor, type Entry } from '../lib/content';
+interface Props { entries: Entry[]; }
+const { entries } = Astro.props;
+---
+{entries.length > 0 && <aside class="related" aria-label="Related content"><h2>Related</h2><ul>{entries.map(entry => <li><a href={routeFor(entry)}>{entry.data.title}</a></li>)}</ul></aside>}

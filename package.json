@@ -1,0 +1,28 @@
+{
+  "name": "andjam.es-content",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "verify:assets": "shasum -a 256 public/static/binary-fixture.bin dist/static/binary-fixture.bin"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/react": "^4.3.0",
+    "@astrojs/rss": "^4.0.0",
+    "@astrojs/sitemap": "^3.4.0",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "astro": "^5.16.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "typescript": "latest"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.0"
+  }
+}

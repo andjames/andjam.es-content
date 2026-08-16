@@ -1,0 +1,21 @@
+---
+import { site } from '../lib/site';
+interface Props { title: string; description: string; canonical?: string; image?: string; imageAlt?: string; jsonLd?: Record<string, unknown>; }
+const { title, description, canonical, image, imageAlt, jsonLd } = Astro.props;
+const url = canonical ?? new URL(Astro.url.pathname, site.url).toString();
+const imageUrl = image ? new URL(image, site.url).toString() : undefined;
+---
+<title>{title} | {site.name}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={url} />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+{imageUrl && <meta property="og:image" content={imageUrl} />}
+{imageAlt && <meta property="og:image:alt" content={imageAlt} />}
+<meta name="twitter:card" content={imageUrl ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{imageUrl && <meta name="twitter:image" content={imageUrl} />}
+{jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}

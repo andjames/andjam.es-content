@@ -1,0 +1,5 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import EntryList from '../../components/EntryList.astro'; import { publishedEntries } from '../../lib/content';
+const entries = await publishedEntries();
+---
+<BaseLayout title="Notebook" description="Writing, projects, and experiments by Andrew James."><section class="index"><p class="eyebrow">Andrew James</p><h1>Notebook</h1><p class="intro">A broad view of writing, things built, and experiments in progress.</p><EntryList {entries} showType /></section></BaseLayout>

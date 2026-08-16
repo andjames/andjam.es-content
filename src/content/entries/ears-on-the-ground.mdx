@@ -1,0 +1,18 @@
+---
+title: Ears on the Ground
+type: writing
+description: What would happen if a farmer could hear vegetation stress?
+date: 2026-08-01
+topics: [satellite-data, data-sonification, creative-coding]
+related: [lugsail, ndvi-listener]
+---
+
+import NDVIExplorer from '../../components/NDVIExplorer';
+
+Vegetation is often represented as a color scale. Sound offers another way to notice gradual change: a reading can move from an ambient texture toward a signal demanding attention.
+
+This small component is deliberately hydrated only when it becomes visible. The surrounding writing is ordinary static HTML.
+
+<NDVIExplorer client:visible />
+
+The interface is only a sketch, but it demonstrates the useful boundary: the essay can remain an MDX document while a focused interactive lives in a component.
