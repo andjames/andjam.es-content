@@ -83,10 +83,3 @@ For either approach, configure the host's standard static fallback so `/writing/
 
 Every entry has a title, description, canonical URL, Open Graph/Twitter metadata, semantic `article`/heading structure, JSON-LD, sitemap membership, and RSS where relevant. Writing uses `Article`, projects use `SoftwareApplication`, and experiments use `CreativeWork`. The author is a reused reference in JSON-LD rather than a separately repeated, inflated profile page. Add `image` and accurate `imageAlt` to entries with an appropriate social/accessible image.
 
-## Deliberate omissions
-
-No CMS, database, authentication, analytics, heavyweight UI framework, client-side filtering, automatic asset optimization, current-site migration, or `llms.txt` generation. Keystatic can be layered onto the same collection files later without moving content.
-
-## Importing selected Substack writing next
-
-Start with 3–5 evergreen posts. Export/copy each into a single MDX file, preserve its original publication date, add a concise description/topics, replace embedded platform widgets with local images or small purpose-built components, and add a canonical URL only while the Substack copy remains the preferred canonical version. Review links, headings, image alt text, and any licensing/attribution before publishing; then add redirects on the existing host if you ultimately move canonical ownership.
