@@ -1,0 +1,14 @@
+---
+interface Props {
+  src: string;
+  title: string;
+  height?: string;
+}
+
+const { src, title, height = '42rem' } = Astro.props;
+if (!src.startsWith('/static/')) throw new Error('KeplerEmbed accepts self-hosted exports under /static/.');
+---
+<figure class="kepler-embed">
+  <iframe src={src} title={title} loading="lazy" style={`height: ${height}`} allow="fullscreen" />
+  <figcaption><a href={src} target="_blank" rel="noopener">Open {title}</a> in a new tab.</figcaption>
+</figure>

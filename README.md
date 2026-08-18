@@ -62,6 +62,50 @@ import NDVIExplorer from '../../components/NDVIExplorer';
 
 `client:visible` defers JavaScript until the component nears the viewport. Use `client:idle` or `client:load` only when the interaction requires it. MDX prose is server-rendered into static HTML regardless. `Ears on the Ground` is the working example.
 
+### Embed an exported Kepler map
+
+Export the Kepler map as HTML and place it under `public/static/maps/`, for example `public/static/maps/gnss-spoofing.html`. Embed it from MDX without adding Kepler, React, or map JavaScript to the notebook page itself:
+
+```mdx
+import KeplerEmbed from '../../components/KeplerEmbed.astro';
+
+<KeplerEmbed
+  src="/static/maps/gnss-spoofing.html"
+  title="GNSS spoofing map"
+  height="44rem"
+/>
+```
+
+The export loads lazily in its own iframe. The component also supplies an accessible “Open … in a new tab” fallback. Use a restricted public map token in the exported HTML; the file is deployed byte-for-byte under `deploy/static/maps/`.
+
+### Embed a published Google Earth Engine App
+
+Use the `EarthEngineEmbed` component for a public Earth Engine App. It keeps the app in a lazy iframe and provides an external fallback if Earth Engine prevents framing:
+
+```mdx
+import EarthEngineEmbed from '../../components/EarthEngineEmbed.astro';
+
+<EarthEngineEmbed
+  src="https://meddo-328803.projects.earthengine.app/view/red-edge-sar-etc"
+  title="Red-edge, SAR, and satellite imagery explorer"
+  height="44rem"
+/>
+```
+
+The component accepts official `*.projects.earthengine.app` and `*.users.earthengine.app` URLs only. The Earth Engine App must be public for visitors to use it.
+
+### Render a Lugsail project
+
+Put a `.lugsail` source file in `public/data/` and render it explicitly:
+
+```mdx
+import LugsailChart from '../../components/LugsailChart';
+
+<LugsailChart src="/static/charts/migration-by-region.lugsail" client:visible />
+```
+
+`LugsailChart` reads the project’s `chart` field and loads the corresponding renderer only when visible. It supports both header-bearing tables and Lugsail’s compact row format, using mapping column IDs when supplied. The first supported renderer is `rawgraphs.chorddiagram`; new chart types can be added as individual files in `src/lugsail/renderers/` without changing MDX entries.
+
 ## Generated feeds and homepage integration
 
 - `/content/latest.json` contains the eight newest published entries.
@@ -81,6 +125,8 @@ For the current cPanel/Apache deployment, run `npm run deploy:prepare` and uploa
 
 `deploy/` is rebuilt from scratch and is safe to treat as disposable. It is generated only from the checksummed allowlist in `content/deployment-manifest.json`; the preparation script rejects forbidden paths before copying. For an eventual Git-based receiver, retain the additive-only [`integration/merge-content-output.mjs`](integration/merge-content-output.mjs) script. It additionally refuses to overwrite a destination file unless a previous manifest proves this repository owns it, and it never deletes destination files.
 
+> **Sitemap note:** Run `npm run deploy:with-sitemap -- /path/to/current/sitemap.xml` whenever you need to refresh the sitemap. Once `deploy/sitemap.xml` exists, later `npm run deploy:prepare` runs preserve it; they do not regenerate or remove it.
+
 Configure Apache's normal directory-index behavior so `/writing/foo/` resolves to `/writing/foo/index.html` (the standard setup normally does). The standalone sitemap is for preview/validation only: preserve the existing site's sitemap for now, then generate one canonical site-wide sitemap after the site has a unified build process. Add selected generated URLs manually to the existing, manually maintained `/llms.txt` as desired.
 
 ### Optional sitemap update
@@ -91,7 +137,7 @@ To update the existing Google-indexed sitemap without discarding its current URL
 npm run deploy:with-sitemap -- /path/to/downloaded/sitemap.xml
 ```
 
-This creates `deploy/sitemap.xml`. It preserves existing URL records, removes duplicate URLs, and adds only published content routes with their content dates. Drafts never appear because the source is `content/all.json`. Upload this single file only when you want to update the current site's sitemap; `npm run deploy:prepare` continues to exclude it by default.
+This creates `deploy/sitemap.xml`. It preserves existing URL records, removes duplicate URLs, and adds only published content routes with their content dates. Drafts never appear because the source is `content/all.json`. `npm run deploy:prepare` preserves an existing `deploy/sitemap.xml`, but does not refresh it; run this sitemap-specific command whenever the live sitemap or published content has changed.
 
 ### Eventual automated deployment
 
@@ -100,4 +146,3 @@ This creates `deploy/sitemap.xml`. It preserves existing URL records, removes du
 ## SEO and retrieval
 
 Every entry has a title, description, canonical URL, Open Graph/Twitter metadata, semantic `article`/heading structure, JSON-LD, sitemap membership, and RSS where relevant. Writing uses `Article`, projects use `SoftwareApplication`, and experiments use `CreativeWork`. The author is a reused reference in JSON-LD rather than a separately repeated, inflated profile page. Add `image` and accurate `imageAlt` to entries with an appropriate social/accessible image.
-

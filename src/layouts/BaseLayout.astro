@@ -1,9 +1,10 @@
 ---
 import Head from '../components/Head.astro';
 import Nav from '../components/Nav.astro';
+import SectionNav from '../components/SectionNav.astro';
 import '../styles/global.css';
 interface Props { title: string; description: string; canonical?: string; image?: string; imageAlt?: string; jsonLd?: Record<string, unknown>; }
 const props = Astro.props;
 ---
 <!doctype html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><Head {...props} /></head>
-<body><header class="site-header"><a class="wordmark" href="/notebook/">Andrew James <span>/ notebook</span></a><Nav /></header><main><slot /></main><footer>Independent publishing layer for <a href="https://andjam.es/">andjam.es</a>.</footer></body></html>
+<body><Nav /><main><SectionNav /><slot /></main><footer><a href="https://www.andjam.es/">Andrew James</a></footer></body></html>

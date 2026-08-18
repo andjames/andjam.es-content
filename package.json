@@ -17,9 +17,11 @@
     "@astrojs/react": "^4.3.0",
     "@astrojs/rss": "^4.0.0",
     "@astrojs/sitemap": "^3.4.0",
+    "@types/d3": "^7.4.3",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "astro": "^5.16.0",
+    "d3": "^7.9.0",
     "react": "latest",
     "react-dom": "latest",
     "typescript": "latest"

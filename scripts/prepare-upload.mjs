@@ -1,5 +1,5 @@
 /** Creates a disposable, upload-ready directory containing only manifest-owned files. */
-import { cp, mkdir, readFile, rm } from 'node:fs/promises';
+import { cp, mkdir, readFile, rm, access, writeFile } from 'node:fs/promises';
 import { basename, dirname, join, resolve } from 'node:path';
 
 const project = resolve('.');
@@ -9,6 +9,9 @@ const manifestPath = 'content/deployment-manifest.json';
 const allowedRoots = new Set(['writing', 'projects', 'experiments', 'notebook', 'content', '_astro', 'images', 'audio', 'data', 'static']);
 const forbidden = new Set(['index.html', 'llms.txt']);
 const manifest = JSON.parse(await readFile(join(dist, manifestPath), 'utf8'));
+const previousSitemap = join(deploy, 'sitemap.xml');
+const hasPreviousSitemap = await access(previousSitemap).then(() => true).catch(() => false);
+const sitemapContents = hasPreviousSitemap ? await readFile(previousSitemap) : undefined;
 
 if (basename(deploy) !== 'deploy') throw new Error('Refusing to clear an unexpected destination.');
 for (const file of manifest.files) {
@@ -28,4 +31,5 @@ for (const file of manifest.files) {
 }
 await mkdir(join(deploy, 'content'), { recursive: true });
 await cp(join(dist, manifestPath), join(deploy, manifestPath), { force: true });
+if (sitemapContents) await writeFile(join(deploy, 'sitemap.xml'), sitemapContents);
 console.log(`Prepared ${deploy} with ${manifest.files.length} allowlisted files for upload.`);

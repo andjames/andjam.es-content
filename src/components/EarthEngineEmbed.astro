@@ -1,0 +1,17 @@
+---
+interface Props {
+  src: string;
+  title: string;
+  height?: string;
+}
+
+const { src, title, height = '42rem' } = Astro.props;
+const url = new URL(src);
+if (!url.hostname.endsWith('.projects.earthengine.app') && !url.hostname.endsWith('.users.earthengine.app')) {
+  throw new Error('EarthEngineEmbed accepts published Earth Engine App URLs only.');
+}
+---
+<figure class="earth-engine-embed">
+  <iframe src={src} title={title} loading="lazy" style={`height: ${height}`} allow="fullscreen" />
+  <figcaption><a href={src} target="_blank" rel="noopener">Open {title}</a> in Earth Engine if the embedded app is unavailable.</figcaption>
+</figure>

@@ -1,0 +1,37 @@
+---
+title: Sewer Caps and Kepler Maps
+type: experiment
+description: San Francisco's missing sewer vent caps.
+date: 2026-07-20
+topics: [open-data, interactive-maps, data-stories]
+related: [lugsail, ears-on-the-ground]
+---
+
+import KeplerEmbed from '../../components/KeplerEmbed.astro';
+
+
+San Francisco’s "Great Drain Robber" (<a href="https://abc7news.com/amp/post/great-drain-robber-san-francisco-bernal-heights-neighborhood-plagued-repeated-sewer-cover-thefts-night/19432201/" target="_blank">ABC7 News Bay Area article</a>.)
+
+Small (~5”) sewer covers are disappearing in the middle of the night across the city. 
+
+One person was caught on Ring cameras in Bernal Heights, but no one knows why they covers are being taken.
+
+Seemed like a good dataset for a map. 
+
+I pulled a decade of 311 reports filtered by a 'missing drain' tag (<a href="https://data.sfgov.org/City-Infrastructure/311-Cases/vw6y-z8j6/explore/query/SELECT%0A%20%20%60service_request_id%60%2C%0A%20%20%60requested_datetime%60%2C%0A%20%20%60status_description%60%2C%0A%20%20%60agency_responsible%60%2C%0A%20%20%60service_name%60%2C%0A%20%20%60service_subtype%60%2C%0A%20%20%60service_details%60%2C%0A%20%20%60address%60%2C%0A%20%20%60street%60%2C%0A%20%20%60supervisor_district%60%2C%0A%20%20%60neighborhoods_sffind_boundaries%60%2C%0A%20%20%60lat%60%2C%0A%20%20%60long%60%2C%0A%20%20%60point%60%2C%0A%20%20%60point_geom%60%2C%0A%20%20%60source%60%2C%0A%20%20%60media_url%60%0AWHERE%0A%20%20caseless_one_of%28%0A%20%20%20%20%60service_subtype%60%2C%0A%20%20%20%20%22Missing_Side_Sewer_Vent_Cover%22%2C%0A%20%20%20%20%22missing_side_sewer_vent_cover%22%0A%20%20%29%0A%20%20AND%20%60requested_datetime%60%0A%20%20%20%20%20%20%20%20BETWEEN%20%222023-01-01T09%3A16%3A50%22%20%3A%3A%20floating_timestamp%0A%20%20%20%20%20%20%20%20AND%20%222026-07-07T09%3A16%3A50%22%20%3A%3A%20floating_timestamp/page/column_manager">link to data source</a>) and dropped that into Kepler.gl - the open source mapping viz tool from Uber. There’s a lot. (>13,000 cases since 2016!)
+
+Caveats: 311 reports show when a sewer cover is reported missing, not when it disappeared. Also "missing" doesn’t equal "stolen,” but these are typically screwed on.
+
+Some quiet side streets have been hit in clusters over and over again.
+
+Kepler interactive map* & dataset embedded below. 
+
+Notice any patterns? 
+
+*Kepler isn’t great on mobile.
+
+<KeplerEmbed
+    src="/static/maps/sf-caps.html"
+    title="SF Sewer Caps"
+    height="44rem"
+  />

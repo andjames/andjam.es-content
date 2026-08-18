@@ -1,0 +1,14 @@
+---
+title: Migration by Region
+type: experiment
+description: A chord diagram rendered from a Lugsail project file.
+date: 2026-08-17
+topics: [data-visualization, migration, lugsail]
+---
+
+This is a working proof of concept for Lugsail projects in the notebook. The same `.lugsail` file remains the editable source of the data, mappings, and visual settings.
+
+import LugsailChart from '../../components/LugsailChart';
+
+
+<LugsailChart src="/static/charts/migration-by-region.lugsail" client:visible />
