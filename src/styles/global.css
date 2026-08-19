@@ -23,9 +23,17 @@
 .earth-engine-embed iframe { display: block; width: 100%; min-height: 24rem; border: 1px solid var(--border); background: #eee; }
 .earth-engine-embed figcaption { margin-top: .55rem; font-family: ui-sans-serif, system-ui, sans-serif; font-size: .85rem; color: var(--muted); }
 .lugsail-chart { margin: 2rem 0; }
+.lugsail-chart-meta { margin: 0 0 1rem; padding-bottom: .8rem; border-bottom: 3px solid var(--lugsail-accent, var(--ink)); font-family: ui-sans-serif, system-ui, sans-serif; }
+.lugsail-chart-meta h2 { margin: 0; font-size: 1.35rem; }
+.lugsail-chart-meta p { margin: .2rem 0 0; color: var(--muted); font-size: .9rem; }
+.lugsail-chart-meta .lugsail-source { font-size: .8rem; }
 .lugsail-chart svg { display: block; width: 100%; background: #73a5ca; }
 .lugsail-chart path { transition: fill-opacity .15s ease; }
 .lugsail-label { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 12px; fill: var(--ink); }
+.lugsail-line { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.lugsail-axis { stroke: var(--muted); stroke-width: 1; }
+.lugsail-grid { stroke: var(--border); stroke-width: 1; }
+.lugsail-tick { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 12px; fill: var(--muted); }
 .lugsail-chart figcaption, .lugsail-status { margin-top: .55rem; font-family: ui-sans-serif, system-ui, sans-serif; font-size: .85rem; color: var(--muted); }
 .lugsail-status { padding: 1rem; border: 1px solid var(--border); }
 @media (max-width: 600px) { .nav-links a:not(.btn) { display: none; } }

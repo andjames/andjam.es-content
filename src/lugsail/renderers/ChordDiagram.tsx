@@ -1,8 +1,10 @@
 import { arc, chord, ribbon, type ChordGroup, interpolateSpectral } from 'd3';
 import { useMemo, useRef } from 'react';
 import type { LugsailProject } from '../types';
+import type { LugsailChartMeta } from '../types';
+import LugsailChartMetaBlock from '../../components/LugsailChartMeta';
 
-export default function ChordDiagram({ project }: { project: LugsailProject }) {
+export default function ChordDiagram({ project, meta }: { project: LugsailProject; meta: LugsailChartMeta }) {
   const svgRef = useRef<SVGSVGElement>(null);
   const { rawData, mapping, userInput, visualOptions = {} } = project.project;
   const sourceColumn = mapping.source?.value?.[0];
@@ -46,7 +48,7 @@ export default function ChordDiagram({ project }: { project: LugsailProject }) {
     });
   };
 
-  return <figure className="lugsail-chart"><svg ref={svgRef} viewBox={`0 0 ${width} ${height}`} role="img" aria-labelledby="migration-chart-title"><title id="migration-chart-title">Migration flows between world regions</title><g transform={`translate(${width / 2},${height / 2})`}>
+  return <figure className="lugsail-chart"><LugsailChartMetaBlock {...meta} /><svg ref={svgRef} viewBox={`0 0 ${width} ${height}`} role="img" aria-labelledby="migration-chart-title"><title id="migration-chart-title">Migration flows between world regions</title><g transform={`translate(${width / 2},${height / 2})`}>
     {layout.groups.map(group => <g key={group.index} onPointerEnter={() => highlight(group.index)} onPointerLeave={() => highlight(null)}>
       <path d={arcPath(group) ?? undefined} fill={color(group.index)}><title>{`${model.labels[group.index]}: ${group.value.toFixed(2)} million people`}</title></path>
       {(() => { const angle = (group.startAngle + group.endAngle) / 2; const flip = angle > Math.PI / 2 && angle < Math.PI * 1.5; return <text className="lugsail-label" transform={`rotate(${(angle * 180 / Math.PI) - 90}) translate(${outerRadius + 18})${flip ? ' rotate(180)' : ''}`} textAnchor={flip ? 'end' : 'start'}>{model.labels[group.index]}</text>; })()}

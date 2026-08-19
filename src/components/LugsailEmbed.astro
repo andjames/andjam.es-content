@@ -1,0 +1,46 @@
+---
+import { readFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+import LugsailChart from './LugsailChart';
+import type { LugsailChartMeta as ChartMeta, LugsailProject } from '../lugsail/types';
+
+interface Props extends ChartMeta {
+  src: string;
+}
+
+const { src, title, subtitle, source, accentColor } = Astro.props;
+const publicDirectory = fileURLToPath(new URL('../../public/', import.meta.url));
+
+if (!src.startsWith('/static/charts/') || !src.endsWith('.lugsail')) {
+  throw new Error('LugsailEmbed only accepts local .lugsail files under /static/charts/.');
+}
+
+const projectPath = path.resolve(publicDirectory, `.${src}`);
+const relativeProjectPath = path.relative(publicDirectory, projectPath);
+if (relativeProjectPath.startsWith('..') || path.isAbsolute(relativeProjectPath)) {
+  throw new Error('Invalid Lugsail project path.');
+}
+
+const project = JSON.parse(await readFile(projectPath, 'utf8')) as LugsailProject;
+if (project.format !== 'lugsail-project') {
+  throw new Error(`${src} is not a Lugsail project file.`);
+}
+
+const theme = project.brandTheme ?? project.project.brandTheme;
+const meta: ChartMeta = {
+  title: title ?? theme?.title,
+  subtitle: subtitle ?? theme?.subtitle,
+  source,
+  accentColor: accentColor ?? theme?.secondaryColor,
+};
+---
+
+{(meta.title || meta.subtitle || meta.source) && (
+  <header class="lugsail-chart-meta" style={meta.accentColor ? `--lugsail-accent: ${meta.accentColor}` : undefined}>
+    {meta.title && <h2>{meta.title}</h2>}
+    {meta.subtitle && <p>{meta.subtitle}</p>}
+    {meta.source && <p class="lugsail-source">{meta.source}</p>}
+  </header>
+)}
+<LugsailChart src={src} showMeta={false} client:load />

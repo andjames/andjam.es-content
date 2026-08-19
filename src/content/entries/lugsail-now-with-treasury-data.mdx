@@ -1,0 +1,53 @@
+---
+title: Lugsail Update – Treasury Data
+type: project
+description: Lugsail now connects up to the US Treasury API
+date: 2026-08-19
+topics: [data-visualization, api, lugsail]
+links:
+  - label: Lugsail App
+    url: https://lugsail.app/
+---
+
+I've been trying to be selective about the APIs added to Lugsail in an effort to get build out the basics while providing useful – and usable – datasets to experiment with.
+
+import LugsailChart from '../../components/LugsailChart';
+
+So today, I've added in an API link to the US Treasury datasets for importing the following: 
+
+- Debt to penny
+- Treasury General Account cash balance
+- Average interest rates (filterable by a variety of subsets)
+
+Testing it out this morning, but here's a quick lugsail line chart.
+
+<LugsailChart
+    src="/static/charts/viz-treasury-api-debt.lugsail"
+    client:load
+  />
+
+
+I'm being selective about what gets added so it's not just a sprawling mess of datasets, but some next options direct from the Treasury are: 
+
+Connector options (& why?):
+
+1. Monthly Treasury Statement 
+-- Federal receipts, outlays, surplus/deficit, and spending/revenue categories, by month
+
+2. Daily Treasury Statement 
+-- Cash inflows/outflows, tax deposits, refunds, public-debt transactions, and short-term investments
+
+3. Treasury securities auctions -- Auction amounts, yields/rates, terms, maturity dates, and bid metrics
+
+4. Monthly Statement of the Public Debt -- Debt composition by security type/class, marketable vs. nonmarketable debt, and debt-limit context
+
+5. Historical Debt Outstanding -- Annual national debt back to 1789 (long-run time series)
+
+6. State unemployment-fund advances
+-- State-by-state borrowing, balances, and interest rates
+
+7. Financial Report of the U.S. Government
+-- Annual revenue, costs, assets, liabilities, and agency-level financial statements
+
+
+Any preferences? Let me know!

@@ -104,7 +104,19 @@ import LugsailChart from '../../components/LugsailChart';
 <LugsailChart src="/static/charts/migration-by-region.lugsail" client:visible />
 ```
 
-`LugsailChart` reads the project’s `chart` field and loads the corresponding renderer only when visible. It supports both header-bearing tables and Lugsail’s compact row format, using mapping column IDs when supplied. The first supported renderer is `rawgraphs.chorddiagram`; new chart types can be added as individual files in `src/lugsail/renderers/` without changing MDX entries.
+`LugsailChart` reads the project’s `chart` field and loads the corresponding renderer only when visible. It supports both header-bearing tables and Lugsail’s compact row format, using mapping column IDs when supplied. Supported chart IDs are `rawgraphs.chorddiagram` and `rawgraphs.linechart`; new chart types can be added as individual files in `src/lugsail/renderers/` without changing MDX entries.
+
+Title, subtitle, and source lines can stay editorially controlled in MDX, rather than being required in an older project file:
+
+```mdx
+<LugsailChart
+  src="/static/charts/viz-treasury-api-debt.lugsail"
+  title="U.S. debt held by the public"
+  subtitle="Daily Treasury data, January–August 2026"
+  source="Source: U.S. Department of the Treasury"
+  client:visible
+/>
+```
 
 ## Generated feeds and homepage integration
 

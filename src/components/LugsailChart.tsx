@@ -1,13 +1,15 @@
 import { type ComponentType, useEffect, useState } from 'react';
-import type { LugsailProject } from '../lugsail/types';
+import type { LugsailChartMeta, LugsailProject } from '../lugsail/types';
 import ChordDiagram from '../lugsail/renderers/ChordDiagram';
+import LineChart from '../lugsail/renderers/LineChart';
 
-type Renderer = ComponentType<{ project: LugsailProject }>;
+type Renderer = ComponentType<{ project: LugsailProject; meta: LugsailChartMeta }>;
 const renderers: Record<string, Renderer> = {
   'rawgraphs.chorddiagram': ChordDiagram,
+  'rawgraphs.linechart': LineChart,
 };
 
-export default function LugsailChart({ src }: { src: string }) {
+export default function LugsailChart({ src, showMeta = true, ...meta }: { src: string; showMeta?: boolean } & LugsailChartMeta) {
   const [project, setProject] = useState<LugsailProject>();
   const [Renderer, setRenderer] = useState<Renderer>();
   const [error, setError] = useState<string>();
@@ -33,5 +35,12 @@ export default function LugsailChart({ src }: { src: string }) {
 
   if (error) return <p className="lugsail-status" role="alert">{error}</p>;
   if (!project || !Renderer) return <p className="lugsail-status">Loading interactive chart…</p>;
-  return <Renderer project={project} />;
+  const theme = project.brandTheme ?? project.project.brandTheme;
+  const resolvedMeta: LugsailChartMeta = {
+    title: meta.title ?? theme?.title,
+    subtitle: meta.subtitle ?? theme?.subtitle,
+    source: meta.source,
+    accentColor: meta.accentColor ?? theme?.secondaryColor,
+  };
+  return <Renderer project={project} meta={showMeta ? resolvedMeta : {}} />;
 }
