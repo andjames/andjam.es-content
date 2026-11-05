@@ -4,6 +4,7 @@ type: experiment
 layout: custom
 description: A live, deliberately cautious look for northbound non-tidal sea-level signals along California.
 date: 2026-10-12T12:00:00-07:00
+updated: 2026-11-05T00:00:00-07:00
 topics: [ocean-data, noaa, data-visualization, california]
 technologies: [NOAA CO-OPS, D3]
 links:
