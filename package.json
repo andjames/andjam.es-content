@@ -7,6 +7,7 @@
     "dev": "astro dev",
     "build": "astro build && node scripts/build-deploy-manifest.mjs",
     "deploy:prepare": "npm run build && node scripts/prepare-upload.mjs",
+    "deploy:sftp": "npm run deploy:prepare && node scripts/deploy-sftp.mjs",
     "deploy:with-sitemap": "npm run deploy:prepare && node scripts/merge-sitemap.mjs",
     "preview": "astro preview",
     "check": "astro check",

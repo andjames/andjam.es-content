@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pacific Pulse — 2015–16 benchmark</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="benchmark/benchmark.css">
+</head>
+<body>
+  <main class="benchmark-page">
+    <nav><a href="index.html">← PACIFIC PULSE</a><span>HISTORICAL METHOD CHECK / 2015–16</span></nav>
+    <header>
+      <div class="eyebrow">NOAA CO-OPS / VERIFIED HOURLY HEIGHTS</div>
+      <h1>Can the method recover<br><em>historical coastal timing?</em></h1>
+      <p>This is a validation workspace, not evidence about today. It uses the same tide-removed, 40-hour low-pass residual calculation as the live explorer, applied to October 2015–April 2016.</p>
+    </header>
+    <section class="benchmark-controls" aria-label="Benchmark controls">
+      <label>Candidate window <select id="benchmarkWindow"></select></label>
+      <label class="pressure-toggle"><input id="benchmarkPressure" type="checkbox" checked> inverse-barometer sensitivity correction</label>
+      <span id="benchmarkStatus">Loading benchmark cache…</span>
+    </section>
+    <section class="benchmark-card">
+      <div class="card-top"><span>OBSERVED STATION STRIPS <b>· 3H BINS / 40H LOW-PASS</b></span><span id="benchmarkRange"></span></div>
+      <div id="benchmarkField"></div>
+      <p class="caption">Each colored strip is a direct gauge observation after filtering. Empty space means unavailable data; there is no spatial interpolation between stations. Color is centered on zero residual.</p>
+    </section>
+    <section class="benchmark-analysis">
+      <div><div class="eyebrow">LAG CHECK / SAN DIEGO REFERENCE</div><h2>Does the best-fit delay grow northward?</h2></div>
+      <div><p id="benchmarkVerdict">Waiting for matched observations.</p><div id="benchmarkLag"></div><p class="caption">Positive lag means the comparison station’s observed signal occurs later than San Diego. The test searches ±7 days and reports correlation from direct timestamp matches only. It does not calculate a propagation speed.</p></div>
+    </section>
+    <footer>NOAA CO-OPS verified hourly heights − hourly astronomical predictions · Pressure correction is a sensitivity test, not a complete weather correction.</footer>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="dashboard/analysis-core.js"></script>
+  <script src="benchmark/benchmark.js"></script>
+</body>
+</html>

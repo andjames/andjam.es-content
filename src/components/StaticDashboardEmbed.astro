@@ -1,0 +1,15 @@
+---
+interface Props {
+  src: string;
+  title: string;
+  height?: string;
+}
+
+const { src, title, height = '58rem' } = Astro.props;
+if (!src.startsWith('/static/')) throw new Error('StaticDashboardEmbed accepts self-hosted dashboards under /static/.');
+---
+
+<figure class="static-dashboard-embed">
+  <iframe src={src} title={title} loading="lazy" style={`height: ${height}`} allow="fullscreen" />
+  <figcaption><a href={src} target="_blank" rel="noopener">Open {title}</a> in a new tab.</figcaption>
+</figure>

@@ -1,0 +1,60 @@
+---
+title: Open-Sourcing Satellite Data for Nepal’s Glacial Lakes
+type: project
+description: An open data project
+status: In development
+technologies: [EarthData, data visualization, opendata]
+date: 2026-09-01
+topics: [data-visualization, tools]
+---
+
+There's an enormous amount of open satellite data that covers Nepal's glacial lakes (and glaciers). A lot of it is unusable without a week of validating and processing it.
+
+I started an open source project with the aim to change that for at least one lake.
+
+(tl;dr – Open Source Repo here: <a href="https://github.com/andjames/OpenImja" target="_blank">github.com/andjames/OpenImja</a>)
+
+<hr />
+
+On the 26th, I sat in on <a href="https://www.earthdata.nasa.gov/events/using-earthaccess-python-library-stream-data">NASA's webinar on how to stream datasets from Earthdata</a>. It happened to be the same day as the collapsed glacier that led to a landslide and flood in Nepal.
+
+It was impressive to see the Earth Observation community open up datasets in response.
+
+The problem though is that every service is different. Every API has a different structure and login requirements. Some data is optical, some radar or hyperspectral, some comes as raw data that needs significant processing.
+
+There's no single place — or process — to pull it together and determine what's actually useful.
+
+And "data available" doesn't necessarily mean "data usable." One cloud can ruin a satellite pass.
+
+So I decided to start experimenting pulling disparate datasets into one open-source repo.
+
+I'm starting with one glacial lake in Nepal: Imja Tsho, just below Island Peak (Imja Tse) and above the valley that leads to Everest.
+
+I first was there in 2003 on a volunteer trip with <a href="https://portersprogressuk.org/">Porters' Progress</a>, looking at the living conditions, equipment and first-aid access of porters working the Everest route. Imja Tsho was already a concern then.
+
+An early-warning system was eventually installed downstream, but <a href="https://www.bbc.com/news/articles/czjwr93vrrzo">Nepali officials told the BBC</a> in April that it may no longer work.
+
+Meanwhile, there's an incredible amount of data on the lake: 
+
+Almost 40 years of Landsat imagery. Sentinel-1 and Sentinel-2. NASA high-resolution elevation data. Historical sonar/bathymetric surveys. Ground monitoring. Research papers and flood models. And that's just existing open source data – commmercial providers have higher res data with more recent acquisitions.
+
+But it's scattered across the internet and buried in different formats.
+
+OpenImja is an attempt to pull that into one reproducible, open dataset — including not just what data is listed as "available", but what is "usable."
+
+I've started with Google Earth Engine data and a 1985–2026 satellite archive scrape for NDWI-derived lake measurement data.
+
+There's a lot more to do.
+
+If anyone working in Earth observation, glaciology, Nepal open data or adjacent areas wants to contribute — or tell me what I'm getting wrong — the repo is here: <a href="https://github.com/andjames/OpenImja">https://github.com/andjames/OpenImja</a>
+
+<video
+    controls
+    preload="metadata"
+    playsinline 
+	src="/static/video/nepal/imja-timelapse.mov"
+    type="video/quicktime" 
+    >
+    Your browser does not support embedded video.
+</video>
+<small>Timelapse from Google Earth of Imja Tsho's growth since 1984. (Source: CNES / Airbus (11/13/2021–3/7/2026), Maxar Technologies (older–2/20/2010)</small>

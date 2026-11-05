@@ -18,12 +18,15 @@ npm run dev
 npm run check
 npm run build
 npm run deploy:prepare
+npm run deploy:sftp
 npm run deploy:with-sitemap -- /path/to/downloaded/sitemap.xml
 npm run preview
 npm run verify:assets
 ```
 
 `npm run build` creates `dist/`. `npm run deploy:prepare` rebuilds and creates a disposable `deploy/` directory containing only the approved publishing output. Neither command requires a database, login, CMS, or server runtime.
+
+`npm run deploy:sftp` builds that same artifact and uploads it via SFTP. Copy `.env.deploy.example` to `.env.deploy`, fill in the host's SSH/SFTP account and absolute document-root path, then add the host key to your local `known_hosts` by connecting once interactively with `sftp user@host`. The script uses your SSH agent or the optional `DEPLOY_SSH_KEY`; it deliberately does not support FTP passwords or delete remote files.
 
 ## Add content
 

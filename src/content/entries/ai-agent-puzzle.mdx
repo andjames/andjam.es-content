@@ -2,13 +2,38 @@
 title: I Hid a Puzzle in My Website for AI Agents
 type: experiment
 description: An experiment to see what happens when websites contain information meant to be discovered by AI, rather than simply displayed and read.
-date: 2026-08-14
+date: 2026-08-21
 topics: [AI-agents, information-architecture, experiments]
 related: []
 ---
 
-Websites are usually organized around direct display. This note considers a different invitation: information that rewards a curious visitor—human or agent—who follows clues, reads structure, and makes connections.
+<img src="/static/images/in-the-computer.gif" />
 
-The puzzle is not a claim about how every agent behaves – so far 4 have attempted the puzzle and only one has made it to the end with minimal coaxing. The last step is a logbook accessible to an Agent that GETs signed with the deciphered passcode. 
+Claude is watermarking text now – the Internet's parents (and LinkedIn #thoughtleadership) are <a href="https://daringfireball.net/2026/08/anthropics_watermark_text_adulteration_in_claude_is_a_perversion_of_writing">not happy</a>. 
 
-It's a way to test how information architecture changes exploration – especially in our new Agent-driven world of discovery.
+This led me to thinking how data is encoded in text and images, etc.
+
+It got me wondering –
+
+Websites are generally organized around a hierarchy of display that presents key features for SEO (and now GEO). Now we're told to add llms.txt files to help in discovery. That's great.
+
+But why not offer up our information in a way that rewards the curious visitor—human or agent—who follows clues, reads structure, and makes connections? Not necessarily making it more difficult, just making it worth exploring?
+
+So I started with a small hidden bit on the front of my website. The top image is actually encoded with my resume (because resumes are boring, but everyone likes a dog photo).
+
+I put together a little encoder/decoder for the image (or any image + text). It's at: 
+
+<a href="https://andjam.es/encodecode.html">andjam.es/encodecode.html</a>
+
+This was a first step that got me thinking a bit more about the "olden days" of the Internet and exploring sites that had something to reveal – if you looked in the right spot. 
+
+SEO and social media sort of destroyed digital exploration – if you wanted something to be discoverable, you had to put it upfront and out loud. If you wanted to hide a tip, the best you could do was drop it in a console.log() message for anyone remotely curious that might open the site inspector.
+
+Since curious explorers of the internet now include agents, I decided to build out the puzzle around those visitors. But don't stress, it's discoverable by people too, you just might need some tools.
+
+Really, it's just for fun to see what happens. It's not a claim about how agents behave. So far 4 different models have been put through the test (by way of prompts, not natural discovery). Only one has made it to the end without additional coaxing. How do I know this for sure? The last step is a logbook accessible to an agent. They sign it through a GET request accessed with the puzzle's passcode. 
+
+But, it's also to test how information architecture dictates exploration. Our new agent-driven world means those exploring it have the ability to use new tools. Why not exercise them?
+
+<img src="/static/images/ai-guestbook.png" />
+<small> Note – ChatGPT also solved the puzzle, but didn't sign the book. :( </small>

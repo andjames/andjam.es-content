@@ -1,0 +1,49 @@
+name: Deploy content site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: content-site-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download the current sitemap
+        run: curl --fail --location --retry 3 https://andjam.es/sitemap.xml --output /tmp/live-sitemap.xml
+
+      - name: Build upload bundle
+        run: npm run deploy:with-sitemap -- /tmp/live-sitemap.xml
+
+      - name: Upload content bundle
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          protocol: ftp
+          local-dir: ./deploy/
+          server-dir: public_html/
+          state-name: .andjames-content-deploy-state.json
+          log-level: minimal

@@ -1,0 +1,25 @@
+{
+  "updated_at": "2026-10-29T00:00:00Z",
+  "events": [
+    {
+      "id": "sf-embarcadero-2026-10-27",
+      "date": "2026-10-27",
+      "place": "San Francisco Embarcadero",
+      "kind": "Observed impact",
+      "title": "High-tide flooding reaches the waterfront",
+      "summary": "Seawater flooded part of the Embarcadero during abnormally high tides, restricting access along the waterfront.",
+      "why_it_matters": "A useful real-world reference point for the season: coastal impacts depend on the combined water level, not on one ocean process alone.",
+      "caveat": "This log does not attribute this incident to a Kelvin wave. High astronomical tides, elevated coastal water, swell, weather, and local Bay conditions can overlap.",
+      "sources": [
+        {
+          "label": "KQED: Embarcadero floods as tides peak 2 feet above normal",
+          "url": "https://www.kqed.org/news/12106584/san-francisco-embarcadero-floods-as-tides-peak-2-feet-above-normal"
+        },
+        {
+          "label": "San Francisco emergency declaration and coastal-flood preparedness",
+          "url": "https://www.sfpuc.gov/about-us/news/mayor-lurie-declares-local-emergency-strengthen-san-franciscos-el-nino-preparedness"
+        }
+      ]
+    }
+  ]
+}

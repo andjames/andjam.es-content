@@ -1,0 +1,55 @@
+---
+title: Lugsail Update – Labs Experiment
+type: project
+description: A Claymation pigeon showed me the way
+date: 2026-09-04
+topics: [data-visualization, api, lugsail]
+links:
+  - label: Lugsail App
+    url: https://lugsail.app/
+---
+
+I’ve been considering what the next steps for Lugsail (my data viz tool) should be as it slowly edges towards increasing agency, and I think I’ve figured it out. Yes, a claymation pigeon showed me the way.
+
+I was at an agentic video app (Luma AI) workshop the last two weeks at TIAT. This week we were prompted to create videos around a couple of pigeons.
+
+The workflow inside the app is what stood out. It's infinite artboard à la Illustrator or Figma – but I'd say it's cleaner than Figma.
+
+You can collaborate with teammates inside the workspace (or interact with an AI model), and iterations are grouped (feels very Illustrator Artboard-ish). A lot of apps are implementing the Tldraw functionality. This led me to the idea that Lugsail could work towards an explicitly data visualization version of Illustrator or Figma.
+
+So I've started to lightly apply a version that will sit within a "Lugsail Labs" section – and depending on user feedback – could integrate into the main workspace. 
+
+Here's a quick demo, the Lab's Infinite workspace starts ~15 seconds, where it assesses the dataset variables and builds multiple chart options: 
+
+ <video
+    controls
+    preload="metadata"
+    playsinline 
+  src="/static/video/lugsail/Data_Flow_Diagrams_lugsail-demo.mp4"
+  type="video/mp4">
+    Your browser does not support embedded video.
+</video>
+
+(Note: Still very much in development.)
+
+Anway, here's where we're at: 
+
+I think that for a web-based visualization tool where data privacy matters, the agent should really <i>only</i> interact with the dataset in the most basic ways (understand the shape & variable types), then suggest options.
+
+It should not be building charts itself where any sort of hallucinations are possible. The user should always be able to see what variable what element is coming from. D3 natively handles most of this nicely already. 
+
+The skillset for the agent is the Lugsail workflow, options, styles, and the knowledge base is from existing data connectors and demo charts.
+
+The workflow iterates, groups, builds, and the user stays in the loop — and able to walk back through where the data came from.
+
+
+And since you're probably just here for the pigeons in SF video, here's that: 
+
+ <video
+    controls
+    preload="metadata"
+    playsinline 
+  src="/static/video/lugsail/silent-pigeons.mp4"
+  type="video/mp4">
+    Your browser does not support embedded video.
+</video>

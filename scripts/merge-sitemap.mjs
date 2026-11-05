@@ -12,16 +12,6 @@ if (!/<urlset\b/.test(sourceXml)) throw new Error('The supplied file does not ap
 
 const project = resolve('.');
 const entries = JSON.parse(await readFile(join(project, 'dist/content/all.json'), 'utf8'));
-const existingBlocks = sourceXml.match(/<url>\s*[\s\S]*?<\/url>/g) ?? [];
-const existingUrls = new Set();
-const retained = [];
-for (const block of existingBlocks) {
-  const loc = block.match(/<loc>\s*([^<]+?)\s*<\/loc>/)?.[1];
-  if (!loc || existingUrls.has(loc)) continue;
-  existingUrls.add(loc);
-  retained.push(block.trim());
-}
-
 const today = new Date().toISOString().slice(0, 10);
 const latestByType = new Map();
 for (const entry of entries) {
@@ -35,6 +25,26 @@ const sectionUrls = [
   { url: '/notebook/', date: entries[0]?.date },
 ];
 const additions = [...sectionUrls, ...entries.map(entry => ({ url: entry.url, date: entry.date }))];
+const generatedDates = new Map(additions.map(item => [new URL(item.url, 'https://andjam.es').toString(), item.date ?? today]));
+const existingBlocks = sourceXml.match(/<url>\s*[\s\S]*?<\/url>/g) ?? [];
+const existingUrls = new Set();
+const retained = [];
+let updated = 0;
+for (const block of existingBlocks) {
+  const loc = block.match(/<loc>\s*([^<]+?)\s*<\/loc>/)?.[1];
+  if (!loc || existingUrls.has(loc)) continue;
+  existingUrls.add(loc);
+  const date = generatedDates.get(loc);
+  if (!date) {
+    retained.push(block.trim());
+    continue;
+  }
+  const refreshed = /<lastmod>\s*[^<]+?\s*<\/lastmod>/.test(block)
+    ? block.replace(/<lastmod>\s*[^<]+?\s*<\/lastmod>/, `<lastmod>${date}</lastmod>`)
+    : block.replace(/(<loc>\s*[^<]+?\s*<\/loc>)/, `$1\n  <lastmod>${date}</lastmod>`);
+  retained.push(refreshed.trim());
+  updated += 1;
+}
 let added = 0;
 for (const item of additions) {
   const url = new URL(item.url, 'https://andjam.es').toString();
@@ -47,4 +57,4 @@ for (const item of additions) {
 const declaration = sourceXml.match(/<\?xml[^>]*\?>/)?.[0] ?? '<?xml version="1.0" encoding="UTF-8"?>';
 const open = sourceXml.match(/<urlset\b[^>]*>/)?.[0] ?? '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 await writeFile(join(project, 'deploy/sitemap.xml'), `${declaration}\n${open}\n${retained.join('\n')}\n</urlset>\n`);
-console.log(`Prepared deploy/sitemap.xml: retained ${retained.length - added} existing URLs and added ${added} published content URLs.`);
+console.log(`Prepared deploy/sitemap.xml: retained ${retained.length - added} existing URLs, refreshed ${updated} content dates, and added ${added} published content URLs.`);

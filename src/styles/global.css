@@ -22,6 +22,9 @@
 .earth-engine-embed { margin: 2rem 0; }
 .earth-engine-embed iframe { display: block; width: 100%; min-height: 24rem; border: 1px solid var(--border); background: #eee; }
 .earth-engine-embed figcaption { margin-top: .55rem; font-family: ui-sans-serif, system-ui, sans-serif; font-size: .85rem; color: var(--muted); }
+.static-dashboard-embed { width: min(100vw - 2.5rem, 72rem); margin: 2.5rem 0; margin-left: calc((min(45rem, 100vw - 2.5rem) - min(100vw - 2.5rem, 72rem)) / 2); }
+.static-dashboard-embed iframe { display: block; width: 100%; min-height: 32rem; border: 1px solid var(--border); background: #101d2a; }
+.static-dashboard-embed figcaption { margin-top: .55rem; font-family: ui-sans-serif, system-ui, sans-serif; font-size: .85rem; color: var(--muted); }
 .lugsail-chart { margin: 2rem 0; }
 .lugsail-chart-meta { margin: 0 0 1rem; padding-bottom: .8rem; border-bottom: 3px solid var(--lugsail-accent, var(--ink)); font-family: ui-sans-serif, system-ui, sans-serif; }
 .lugsail-chart-meta h2 { margin: 0; font-size: 1.35rem; }
@@ -38,6 +41,7 @@
 .lugsail-status { padding: 1rem; border: 1px solid var(--border); }
 @media (max-width: 600px) { .nav-links a:not(.btn) { display: none; } }
 @media (max-width: 42rem) { .index, .entry { padding: 3.5rem 0; } }
+@media (max-width: 48rem) { .static-dashboard-embed { width: 100%; margin-left: 0; } }
 small {
 	font-size:12px;
 	line-height: 12px;
